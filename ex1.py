@@ -7,13 +7,9 @@
 # угадать загаданное число за указанное число попыток.
 
 from random import randint
-
-
 def main():
 
-
     upper_limit, find_try = int(input('Предел? ')), int(input('Попыток? '))
-
 
     def try_to_guess():
 
