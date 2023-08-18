@@ -35,4 +35,4 @@ def try_to_guess(upper_limit, find_try):
         else:
             print(f'\nНе угадал! Я загадал {num}.')
 
-try_to_guess(120, 500)
+try_to_guess(10, 500)
