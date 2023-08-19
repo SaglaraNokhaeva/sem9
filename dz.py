@@ -14,15 +14,15 @@ import csv
 import random
 from random import randint
 
+def generation_csv_file(count):
+    with open('my_csv_file.csv', 'w', newline='', encoding='utf-8') as f_write:
+        csv.write = csv.writer(f_write, dialect='excel')
+        for i in range(count):
+            csv.write.writerow([random.uniform(-100, 100), randint(-100, 100), randint(-100, 100)])
+
 def main(func):
     # ○ Декоратор, запускающий функцию нахождения корней квадратного
     # уравнения с каждой тройкой чисел из csv файла.
-    def generation_csv_file(count):
-        with open('my_csv_file.csv', 'w', newline='', encoding='utf-8') as f_write:
-            csv.write = csv.writer(f_write, dialect='excel')
-            for i in range(count):
-                csv.write.writerow([random.uniform(-100, 100), randint(-100, 100), randint(-100, 100)])
-
     generation_csv_file(randint(10, 20))
     def inner():
         with open('my_csv_file.csv', 'r', newline='') as f:
@@ -40,6 +40,7 @@ def main2(func):
     # ○ Декоратор, сохраняющий переданные параметры и результаты работы
     # функции в json файл.
     my_dict = {}
+    generation_csv_file(randint(10, 20))
     def iner2():
         with (open('my_csv_file.csv', 'r', newline='') as f, open('my_csv_file.json', 'w', encoding='utf-8') as file):
             csv_file = csv.reader(f, quoting=csv.QUOTE_NONNUMERIC)
@@ -47,24 +48,6 @@ def main2(func):
                 key = str(line)
                 value = tuple(func(*line))
                 my_dict[key] = value
-
-                # result = func(*line)
-                # print(result)
-
-
-                # temp_dict = {}
-                # print(line)
-                # for _ in result:
-                #     my_dict{line:result}
-                # print(type(result))
-                # for _  in enumerate(result):
-                #     dict.update({line: _})
-                # temp_dict = dict(zip(line, result))
-                # print(temp_dict)
-                # dict.update(line=[*result])
-                # my_dict[line] = [*result]
-                # line.append(result)
-
             print(my_dict)
             json.dump(my_dict, file, indent=2, ensure_ascii=False)
         return my_dict
@@ -72,8 +55,9 @@ def main2(func):
     return iner2
 
 
-# @main2
-@main2
+# @main Запуск первого декоратора
+@main2 #Запуск второго декоратора. Одно из двух запускать
+
 def quadratic_equation(a, b, c):
     answer = []
     discr = b ** 2 - 4 * a * c
