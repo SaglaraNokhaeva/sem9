@@ -15,6 +15,6 @@ def quadratic_equation(a, b, c):
     else:
         print("Корней нет")
         return "Корней нет"
-quadratic_equation(-68.0, -54.0, 29.0)
+quadratic_equation(-16.0, -14.0, 53.0)
 
-# -1.1613403800109576 0.36722273295213426
+# -2.309372391483992, 1.434372391483992

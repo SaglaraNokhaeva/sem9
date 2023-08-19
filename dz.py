@@ -46,42 +46,48 @@ def main2(func):
         with (open('my_csv_file.csv', 'r', newline='') as f, open('my_csv_file.json', 'w') as f2):
             csv_file = csv.reader(f, quoting=csv.QUOTE_NONNUMERIC)
             for line in csv_file:
+                key = tuple(line)
+                value = tuple(func(*line))
+                my_dict[key] = value
+
+                # result = func(*line)
+                # print(result)
+
+
                 # temp_dict = {}
                 # print(line)
-                result = func(*line)
-                print(type(result))
-                # for _ in range(len(result)):
-                #     my_dict[line] = result[_]
+                # for _ in result:
+                #     my_dict{line:result}
                 # print(type(result))
                 # for _  in enumerate(result):
                 #     dict.update({line: _})
                 # temp_dict = dict(zip(line, result))
                 # print(temp_dict)
-                dict.update(line=result)
-                # my_dict[line] = (*result)
+                # dict.update(line=[*result])
+                # my_dict[line] = [*result]
                 # line.append(result)
 
             print(my_dict)
-        return result
+        return my_dict
 
     return inner
 
 
 @main2
 def quadratic_equation(a, b, c):
+    answer = []
     discr = b ** 2 - 4 * a * c
     if discr > 0:
         x1 = (-b + math.sqrt(discr)) / (2 * a)
         x2 = (-b - math.sqrt(discr)) / (2 * a)
-        # print(x1, x2)
-        return x1, x2
+        answer.append(x1)
+        answer.append(x2)
     elif discr == 0:
         x = -b / (2 * a)
-        # print(x)
-        return x
+        answer.append(x)
     else:
-        # print("Корней нет")
-        return "Корней нет"
+        answer.append("Корней нет")
+    return answer
 
 
 # print(quadratic_equation(1, 4, 1))
