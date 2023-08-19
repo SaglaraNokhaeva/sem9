@@ -9,7 +9,16 @@
 # функции в json файл.
 # Соберите пакет с играми из тех файлов, что уже были созданы в рамках курса
 import math
+import csv
+from random import randint
 
+def generation_csv_file(count):
+    with open('my_csv_file.csv', 'w', newline='', encoding='utf-8') as f_write:
+        csv.write = csv.writer(f_write, dialect='excel')
+        for i in range(count):
+            csv.write.writerow([randint(-100, 100), randint(-100, 100), randint(-100, 100)])
+
+# generation_csv_file(100)
 
 def quadratic_equation(a, b, c):
     discr = b ** 2 - 4 * a * c
@@ -23,4 +32,4 @@ def quadratic_equation(a, b, c):
     else:
         return "Корней нет"
 
-print(quadratic_equation(1, 4, 1))
+# print(quadratic_equation(1, 4, 1))
