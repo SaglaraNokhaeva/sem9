@@ -8,7 +8,7 @@
 # ○ Декоратор, сохраняющий переданные параметры и результаты работы
 # функции в json файл.
 # Соберите пакет с играми из тех файлов, что уже были созданы в рамках курса
-
+import json
 import math
 import csv
 from random import randint
@@ -43,10 +43,10 @@ def main2(func):
     # функции в json файл.
     my_dict = {}
     def inner():
-        with (open('my_csv_file.csv', 'r', newline='') as f, open('my_csv_file.json', 'w') as f2):
+        with (open('my_csv_file.csv', 'r', newline='') as f, open('my_csv_file.json', 'w', encoding='utf-8') as file):
             csv_file = csv.reader(f, quoting=csv.QUOTE_NONNUMERIC)
             for line in csv_file:
-                key = tuple(line)
+                key = str(line)
                 value = tuple(func(*line))
                 my_dict[key] = value
 
@@ -68,6 +68,7 @@ def main2(func):
                 # line.append(result)
 
             print(my_dict)
+            json.dump(my_dict, file, indent=2, ensure_ascii=False)
         return my_dict
 
     return inner
